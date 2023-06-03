@@ -12,7 +12,7 @@ import {
   LabelText,
 } from './ContactForm.styled';
 import { getContacts } from 'redux/contacts/selectors';
-import { addContact } from 'redux/contacts/contactsSlice';
+import { addContact } from 'redux/contacts/operations';
 
 const schema = yup.object().shape({
   name: yup
@@ -22,30 +22,30 @@ const schema = yup.object().shape({
     .min(2, 'Too short!')
     .max(20, 'Too long!')
     .required('Name is a required field'),
-  number: yup
+  phone: yup
     .number(
       'Phone number must be digits and can contain spaces, dashes, parentheses and can start with +'
     )
-    .required('Number is a required field'),
+    .required('Phone number is a required field'),
 });
 
 const initialValues = {
   name: '',
-  number: '',
+  phone: '',
 };
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
+  const { items } = useSelector(getContacts); // contacts.items
 
-  const onFormSubmit = ({ name, number }, { resetForm }) => {
+  const onFormSubmit = ({ name, phone }, { resetForm }) => {
     // const { name, number } = values;
     const normalizeNewName = name.toLowerCase();
-    const nameList = contacts.map(contact => contact.name.toLowerCase());
+    const nameList = items.map(contact => contact.name.toLowerCase());
 
     nameList.includes(normalizeNewName)
       ? alert(`${name} is already in contacts.`)
-      : dispatch(addContact(name, number));
+      : dispatch(addContact({ name, phone }));
 
     resetForm();
   };
@@ -75,14 +75,14 @@ export const ContactForm = () => {
             <LabelText>Number</LabelText>
             <Field
               type="tel"
-              name="number"
+              name="phone"
               placeholder="Enter a number"
               // placeholder="+380 XX XXX XX XX"
               pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
               title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
               required
             />
-            <ErrorMessage name="number" component="div" />
+            <ErrorMessage name="phone" component="div" />
           </FormLabel>
         </FormField>
         <FormButton type="submit">Add contact</FormButton>

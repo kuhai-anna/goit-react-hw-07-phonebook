@@ -14,12 +14,12 @@ const getVisibleContacts = (contacts, filter) => {
 export const ContactList = () => {
   const contacts = useSelector(getContacts);
   const filter = useSelector(getFilter);
-  const visibleContacts = getVisibleContacts(contacts, filter);
+  const visibleContacts = getVisibleContacts(contacts.items, filter);
 
   return (
     <ul>
-      {visibleContacts.map(({ id, name, number }) => (
-        <ContactListItem key={id} id={id} name={name} number={number} />
+      {visibleContacts.map(({ id, name, phone }) => (
+        <ContactListItem key={id} id={id} name={name} phone={phone} />
       ))}
     </ul>
   );

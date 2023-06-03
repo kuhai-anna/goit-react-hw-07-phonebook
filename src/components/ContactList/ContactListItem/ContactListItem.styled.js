@@ -17,7 +17,14 @@ export const Contact = styled.p`
 `;
 
 export const ContactName = styled.span`
+  display: block;
+  margin-bottom: 4px;
+
   font-weight: 500;
+`;
+
+export const ContactNumber = styled.span`
+  display: block;
 `;
 
 export const DeleteButton = styled.button`

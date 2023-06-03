@@ -7,7 +7,7 @@ import {
 
 export const Form = styled(FormikForm)`
   margin: 0 auto;
-  padding: ${props => props.theme.spacing(6)} ${props => props.theme.spacing(4)};
+  padding: ${props => props.theme.spacing(7)} ${props => props.theme.spacing(4)};
   width: ${props => props.theme.spacing(72)};
 
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
@@ -21,7 +21,7 @@ export const FormField = styled.div`
     margin-bottom: ${props => props.theme.spacing(3)};
   }
   :last-of-type {
-    margin-bottom: ${props => props.theme.spacing(7)};
+    margin-bottom: ${props => props.theme.spacing(9)};
   }
 `;
 

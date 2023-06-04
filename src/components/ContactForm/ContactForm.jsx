@@ -11,7 +11,7 @@ import {
   ErrorMessage,
   LabelText,
 } from './ContactForm.styled';
-import { getContacts } from 'redux/contacts/selectors';
+import { selectContacts } from 'redux/contacts/selectors';
 import { addContact } from 'redux/contacts/operations';
 
 const schema = yup.object().shape({
@@ -36,7 +36,7 @@ const initialValues = {
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
-  const { items } = useSelector(getContacts); // contacts.items
+  const { items } = useSelector(selectContacts); // contacts.items
 
   const onFormSubmit = ({ name, phone }, { resetForm }) => {
     // const { name, number } = values;
